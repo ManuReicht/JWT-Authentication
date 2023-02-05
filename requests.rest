@@ -3,8 +3,7 @@
 
 //get data, authenticate with access token
 GET http://localhost:3000/posts
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWFudWVsIiwiaWF0IjoxNjc1NjA1Mzg0LCJleHAiOjE2NzU2MDUzOTl9.iV3T9YXPO-HXr6jJX9yxby0dIffKuzijY9TuaRjdq54
-
+Authorization: Bearer ACCESS-TOKEN-HERE
 // ### <- starts new request
 ### 
 // logout, delete refresh token
@@ -12,7 +11,7 @@ DELETE http://localhost:4000/logout
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWFudWVsIiwiaWF0IjoxNjc1NjA1MzYxfQ.1xR7im8xi8rSikL7onfxf_0KFg2KKrCKdxZUSkjPmaA"
+    "token": "REFRESH TOKEN HERE"
 }
 
 ###
@@ -21,7 +20,8 @@ POST http://localhost:4000/token
 Content-Type: application/json
 
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiTWFudWVsIiwiaWF0IjoxNjc1NjA1MzYxfQ.1xR7im8xi8rSikL7onfxf_0KFg2KKrCKdxZUSkjPmaA"}
+    "token": "REFRESH TOKEN HERE"
+}
 
 ###
 //get new access and refresh token
@@ -29,5 +29,5 @@ POST http://localhost:4000/login
 Content-Type: application/json
 
 {
-    "username": "Manuel"
+    "username": "Max"
 }
