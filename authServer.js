@@ -10,6 +10,7 @@ app.use(express.json())
 //datenbank wäre besser
 let refreshTokens = []
 
+//erstellt mit dem refresh token einen neuen access token
 app.post('/token', (req, res) => {
     const refreshToken = req.body.token
     if(refreshToken == null) return res.sendStatus(401) //401 = unauthorized
@@ -21,12 +22,14 @@ app.post('/token', (req, res) => {
     })
 })
 
+// logout, macht den refresh token ungültig
 app.delete('/logout', (req, res) => {
     //löscht den refresh token aus dem array
     refreshTokens = refreshTokens.filter(token => token !== req.body.token)
     res.sendStatus(204) //204 = no content
 })
 
+// erstellt neuen access und refresh token
 app.post('/login', (req, res) => {
     // Authenticate User with JWT
     const username = req.body.username
@@ -40,7 +43,8 @@ app.post('/login', (req, res) => {
 
 function generateAccessToken(user){
     //ACCESS_TOKEN_SECRET wurde mit require('crypto').randomBytes(64).toString('hex') erstellt
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '15s'})
+    //expires in 30s
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '30s'})
 }
 
 app.listen(4000)
